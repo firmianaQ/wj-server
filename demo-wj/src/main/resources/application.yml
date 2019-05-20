@@ -1,0 +1,56 @@
+#配置
+server:
+  port: 8443
+  # 项目访问路径
+  servlet:
+    context-path: / 
+spring:
+  # 开发工具
+  devtools:
+    # 热加载
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: WEB-INF/**
+  # 数据库配置
+  datasource:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     url: jdbc:mysql://rm-uf6f1nrqt378588q0jo.mysql.rds.aliyuncs.com/wj?useUnicode=true&characterEncoding=utf-8&useSSL=false&&serverTimezone=GMT%2B8
+     username: root
+     password: Wyh192728
+     # hikariCP连接池配置
+     # spring boot 默认使用hikariCP连接池
+     hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 20
+      max-lifetime: 1800000
+      minimum-idle: 5
+      auto-commit: true
+  redis:
+    database: 0
+    host: 106.14.137.56
+    port: 6379
+    password: Wyh192728
+    pool: 
+      max-active: 1000
+      max-wait: -1
+      max-idle: 8 
+      min-idle: 0
+    timeout: 1000 
+  # 配置gson为默认json转换器
+  http:
+    converters:
+      preferred-json-mapper: gson
+  gson:
+    date-format: yyyy-MM-dd HH:mm:ss
+      
+# mybatis-plus配置
+mybatis-plus:
+  typeAliasesPackage: cn.irua.demo.entity
+  # 扫描mapper文件
+  mapper-locations: classpath*:mapper/demo/*.xml
+  
+logging:
+  config: classpath:log/log4j2_dev.xml
+
+    

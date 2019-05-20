@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.irua.demo.mapper.WjtmMapper">
+<resultMap id="BaseResultMap" type="wjtm">
+		<id column="wjtm_id" jdbcType="BIGINT" property="wjtmId" />
+		<result column="wj_id" jdbcType="BIGINT" property="wjId" />
+		<result column="wjtm_type" jdbcType="VARCHAR" property="wjtmType" />
+		<result column="wjtm_title" jdbcType="VARCHAR" property="wjtmTitle" />
+		<result column="wjtm_memo" jdbcType="VARCHAR" property="wjtmMemo" />
+		<result column="wjtm_required" jdbcType="VARCHAR" property="wjtmRequired" />
+		<result column="wjtm_score" jdbcType="INTEGER" property="wjtmScore" />
+		<collection property="tmxxs" column="wjtm_id" javaType="ArrayList" ofType="tmxxs" select="cn.irua.demo.mapper.TmxxMapper.getByWjtm"></collection>
+	</resultMap>
+	<select id="getByWj" resultMap="BaseResultMap" parameterType="long">
+	select * from wjtm w where w.wj_id = #{wjId}
+	</select>
+</mapper>
+

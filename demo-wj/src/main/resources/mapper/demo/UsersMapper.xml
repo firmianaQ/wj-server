@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.irua.demo.mapper.UsersMapper">
+	<resultMap id="BaseResultMap" type="users">
+		<id column="uid" jdbcType="INTEGER" property="uid" />
+		<result column="uname" jdbcType="VARCHAR" property="uname" />
+		<result column="upwd" jdbcType="VARCHAR" property="upwd" />
+		<result column="realname" jdbcType="VARCHAR" property="realname" />
+		<collection property="cars" column="uid" javaType="ArrayList" ofType="cars" select="cn.irua.demo.mapper.CarsMapper.findByUid"></collection>
+	</resultMap>
+	<sql id="Base_Column_List">
+		uid, uname, upwd ,realname
+	</sql>
+	<select id="findById" parameterType="int" resultMap="BaseResultMap">
+		select * 
+		from users u
+		where u.uid = #{id}
+	</select>
+</mapper>
