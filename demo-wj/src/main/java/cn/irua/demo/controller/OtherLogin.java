@@ -1,6 +1,5 @@
 package cn.irua.demo.controller;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.context.annotation.Scope;
-
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.google.gson.LongSerializationPolicy;
 
 import cn.irua.demo.entity.Users;
@@ -69,9 +66,9 @@ public class OtherLogin extends BaseController {
 				}
 				String userAgent = request.getHeader("user-agent");
 				String atoken = this.tokenService.generateToken(us.getUcode(), userAgent);
-				this.tokenService.save(token, us);
+				this.tokenService.save(atoken, us);
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("token", token);
+				map.put("token", atoken);
 				map.put("data", us);
 				jsonResult.succ(200, map);
 			} else {

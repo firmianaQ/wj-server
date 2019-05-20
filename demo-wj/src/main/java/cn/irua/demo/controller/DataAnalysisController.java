@@ -59,7 +59,7 @@ public class DataAnalysisController extends BaseController {
 		try {
 			Wj wj = wjServiceImpl.getById(wjid);
 			Users u = tokenService.get(request.getHeader("token"));
-			if (u.getUid() != wj.getUid()) {
+			if (u.getUid() - wj.getUid() != 0) {
 				jsonResult.failure(404, "问卷没有找到", null);
 			} else {
 				QueryWrapper<Dj> q1 = new QueryWrapper<>();
